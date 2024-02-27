@@ -3,19 +3,28 @@ const addBtn = document.querySelector("#addBtn");
 const modal = document.querySelector("#modalDiv");
 const closeBtn = document.querySelector("#closeBtn");
 const productInp = document.querySelector("#productInp");
+const submitBtn = document.querySelector("#submitBtn");
 
 const productArray = [];
 
 addBtn.addEventListener("click", () => {
   modal.classList.add("active");
+  submitBtn.classList.add("active");
   productInp.focus();
 });
 
 function hideModal() {
   modal.classList.remove("active");
+  submitBtn.classList.remove("active");
 }
 
+// Redundant, because of productInp blur event listener
 closeBtn.addEventListener("click", () => {
+  hideModal();
+});
+
+productInp.addEventListener("blur", (e) => {
+  if (e.relatedTarget != null && e.relatedTarget.id === "submitBtn") return;
   hideModal();
 });
 
@@ -52,16 +61,39 @@ productInp.addEventListener("keypress", (e) => {
     productArray.shift();
     addMultipleProducts(productArray);
     hideModal();
-  } else if (e.key === "Enter") {
+  }
+  // Add single product
+  else if (e.key === "Enter") {
     productArray.push(productValue);
     addProduct(productValue);
   }
 });
 
-/*
-- masło
-- bułka tarta
-- jajka
+// Add product when user click on sumbmit button\
+// Maybe slice string after pasting it?
+submitBtn.addEventListener("click", (e) => {
+  let productValue = productInp.value;
 
-masło, bułka tarta, jajka
-*/
+  if (productInp.value === "") hideModal();
+  // Multiple products separated by ","
+  else if (productInp.value.includes(",")) {
+    let productArray = [];
+    productArray = productInp.value.split(",");
+    addMultipleProducts(productArray);
+    hideModal();
+  }
+  // Multiple products separated by "-"
+  else if (productInp.value.includes("-")) {
+    let productArray = [];
+    productArray = productInp.value.split("-");
+    productArray.shift();
+    addMultipleProducts(productArray);
+    hideModal();
+  }
+  // Add single product
+  else {
+    productArray.push(productValue);
+    addProduct(productValue);
+    productInp.focus();
+  }
+});

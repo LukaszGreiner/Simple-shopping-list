@@ -1,8 +1,3 @@
-@media only screen and (max-width: 600px) {
-  body {
-  }
-}
-
 body {
   background-color: #212529;
 }
@@ -12,7 +7,7 @@ body {
 }
 
 .productDiv {
-  height: 40px;
+  height: 65px;
   width: auto;
 
   padding: 0 0 0 15px;
@@ -33,6 +28,7 @@ body {
 }
 
 .productDiv > li {
+  font-size: 2rem;
   margin-left: 15px;
   list-style-type: none;
 }
@@ -43,7 +39,9 @@ body {
 }
 
 .addBtn {
-  position: absolute;
+  background-color: rregba(0, 0, 0, 0.3);
+
+  position: fixed;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -52,6 +50,21 @@ body {
   width: 150px;
   border-radius: 50px;
   border: 0;
+}
+.submitBtn {
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  border: 0;
+
+  background-color: #343a40;
+
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: none;
 }
 
 /* MODAL */
@@ -91,3 +104,21 @@ body {
 }
 
 /* END OF MODAL */
+
+.footer {
+  height: 50px;
+  width: 100%;
+
+  background-color: #282b2e3f;
+  color: rgba(255, 255, 255, 0.372);
+
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.footer > a {
+  text-decoration: none;
+  color: #b7c8da;
+}

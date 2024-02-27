@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +10,14 @@
   <body>
     <div class="modalDiv" id="modalDiv">
       <button class="closeBtn btn-close" aria-label="Close" id="closeBtn"></button>
-      <input type="text" name="productInput" class="productInp" id="productInp">
+      <input placeholder="Podaj nazwę produktu" type="text" name="productInput" class="productInp" id="productInp">
+      <div data-bs-theme="dark" class="buttonDiv"><button  type="submit" class="submitBtn" id="submitBtn">Potwierdź</button></div>
     </div>
     <ul class="shopList" id="shopList">
-      <div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">eqfqef</li></div>
+      <!-- <div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">eqfqef</li></div> -->
     </ul>
     <div data-bs-theme="dark" class="buttonDiv"><button class="addBtn" id="addBtn">Dodaj produkty</button></div>
+    <footer class="footer"><a href="https://github.com/LukaszGreiner" target="_blank">© Łukasz Greiner</a></footer>
   </body>
   <script src="script.js"></script>
 </html>
