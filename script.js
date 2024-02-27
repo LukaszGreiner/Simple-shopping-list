@@ -5,7 +5,25 @@ const closeBtn = document.querySelector("#closeBtn");
 const productInp = document.querySelector("#productInp");
 const submitBtn = document.querySelector("#submitBtn");
 
-const productArray = [];
+let productArray = [];
+
+// Check if there is data in local storage
+if (localStorage.getItem("productArray")) {
+  // Get the data from local storage
+  productArray = JSON.parse(localStorage.getItem("productArray"));
+}
+
+// Add products to the list
+productArray.forEach((product) => {
+  shopList.innerHTML += `<div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">${product}</li></div>`;
+});
+
+// BUTTONS
+addBtn.addEventListener("click", () => {
+  modal.classList.add("active");
+  submitBtn.classList.add("active");
+  productInp.focus();
+});
 
 addBtn.addEventListener("click", () => {
   modal.classList.add("active");
@@ -32,6 +50,9 @@ function addProduct(productName) {
   productArray.push(productName);
   shopList.innerHTML += `<div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">${productName}</li></div>`;
   productInp.value = "";
+
+  // Add product to local storage
+  localStorage.setItem("productArray", JSON.stringify(productArray));
 }
 
 function addMultipleProducts(Array) {
@@ -40,11 +61,14 @@ function addMultipleProducts(Array) {
     productArray.push(productName);
   });
   productInp.value = "";
+
+  // Add product to local storage
+  localStorage.setItem("productArray", JSON.stringify(productArray));
 }
 
-productInp.addEventListener("keypress", (e) => {
+productInp.addEventListener("keydown", (e) => {
   let productValue = productInp.value;
-  if (e.key === "Enter" && productInp.value === "") {
+  if ((e.key === "Enter" && productInp.value === "") || e.key === "Escape") {
     hideModal();
   }
   // Multiple products separated by ","
@@ -64,7 +88,6 @@ productInp.addEventListener("keypress", (e) => {
   }
   // Add single product
   else if (e.key === "Enter") {
-    productArray.push(productValue);
     addProduct(productValue);
   }
 });
@@ -92,7 +115,6 @@ submitBtn.addEventListener("click", (e) => {
   }
   // Add single product
   else {
-    productArray.push(productValue);
     addProduct(productValue);
     productInp.focus();
   }
