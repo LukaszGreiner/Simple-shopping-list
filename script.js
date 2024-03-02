@@ -1,121 +1,86 @@
-const shopList = document.querySelector("#shopList");
-const addBtn = document.querySelector("#addBtn");
-const modal = document.querySelector("#modalDiv");
-const closeBtn = document.querySelector("#closeBtn");
-const productInp = document.querySelector("#productInp");
-const submitBtn = document.querySelector("#submitBtn");
+const shoppingList = document.querySelector(".shopping-list");
+const shoppingListItems = document.querySelectorAll(".shopping-list__item");
+const modal = document.querySelector(".modal");
+const productNameInput = document.querySelector(".modal__input");
+const openModalBtn = document.querySelector(".add-product-button");
+const submitModalBtn = document.querySelector(".modal__submit-button");
 
-let productArray = [];
+let productsData = [];
 
-// Check if there is data in local storage
-if (localStorage.getItem("productArray")) {
-  // Get the data from local storage
-  productArray = JSON.parse(localStorage.getItem("productArray"));
+// LOCAL STORAGE
+
+// Get the data from local storage
+if (localStorage.getItem("productsArray")) {
+  productsData = JSON.parse(localStorage.getItem("productsArray"));
+  loadProducts(productsData);
 }
 
-// Add products to the list
-productArray.forEach((product) => {
-  shopList.innerHTML += `<div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">${product}</li></div>`;
-});
-
-// BUTTONS
-addBtn.addEventListener("click", () => {
-  modal.classList.add("active");
-  submitBtn.classList.add("active");
-  productInp.focus();
-});
-
-addBtn.addEventListener("click", () => {
-  modal.classList.add("active");
-  submitBtn.classList.add("active");
-  productInp.focus();
-});
-
-function hideModal() {
-  modal.classList.remove("active");
-  submitBtn.classList.remove("active");
-}
-
-// Redundant, because of productInp blur event listener
-closeBtn.addEventListener("click", () => {
-  hideModal();
-});
-
-productInp.addEventListener("blur", (e) => {
-  if (e.relatedTarget != null && e.relatedTarget.id === "submitBtn") return;
-  hideModal();
-});
-
-function addProduct(productName) {
-  productArray.push(productName);
-  shopList.innerHTML += `<div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">${productName}</li></div>`;
-  productInp.value = "";
-
-  // Add product to local storage
-  localStorage.setItem("productArray", JSON.stringify(productArray));
-}
-
-function addMultipleProducts(Array) {
-  Array.forEach((productName) => {
-    shopList.innerHTML += `<div class="productDiv"><input type="checkbox" name="productCheckbox" class="productChk form-check-input" id="productChk"><li class="">${productName}</li></div>`;
-    productArray.push(productName);
+function saveToLocalStorage() {
+  productsData = Array.from(
+    shoppingList.querySelectorAll(".shopping-list__item")
+  ).map((product) => {
+    return product.querySelector(".shopping-list__item__name").textContent;
   });
-  productInp.value = "";
 
-  // Add product to local storage
-  localStorage.setItem("productArray", JSON.stringify(productArray));
+  localStorage.setItem("productsArray", JSON.stringify(productsData));
 }
 
-productInp.addEventListener("keydown", (e) => {
-  let productValue = productInp.value;
-  if ((e.key === "Enter" && productInp.value === "") || e.key === "Escape") {
-    hideModal();
-  }
-  // Multiple products separated by ","
-  else if (e.key === "Enter" && productInp.value.includes(",")) {
-    let productArray = [];
-    productArray = productInp.value.split(",");
-    addMultipleProducts(productArray);
-    hideModal();
-  }
-  // Multiple products separated by "-"
-  else if (e.key === "Enter" && productInp.value.includes("-")) {
-    let productArray = [];
-    productArray = productInp.value.split("-");
-    productArray.shift();
-    addMultipleProducts(productArray);
-    hideModal();
-  }
-  // Add single product
-  else if (e.key === "Enter") {
-    addProduct(productValue);
-  }
+function loadProducts(productsArray) {
+  // Creating shopping-list__item
+  productsArray.forEach((item) => {
+    const productListItem = `
+      <li class="shopping-list__item">
+        <input type="checkbox" class="shopping-list__item__checkbox" />
+        <p class="shopping-list__item__name">${item}</p>
+        <button type="button" class="shopping-list__item__remove-button">X</button>
+      </li>
+    `;
+
+    // Inserting shopping-list__item in the DOM
+    shoppingList.insertAdjacentHTML("beforeend", productListItem);
+
+    // Hooking EventListener to remove buttons
+    shoppingList.lastElementChild
+      .querySelector(".shopping-list__item__remove-button")
+      .addEventListener("click", (event) => {
+        const item = event.target.parentElement;
+        item.remove();
+        saveToLocalStorage();
+      });
+  });
+}
+
+// MODAL
+openModalBtn.addEventListener("click", () => {
+  modal.showModal();
 });
 
-// Add product when user click on sumbmit button\
-// Maybe slice string after pasting it?
-submitBtn.addEventListener("click", (e) => {
-  let productValue = productInp.value;
+// ADDING PRODUCTS
+submitModalBtn.addEventListener("click", () => {
+  const productName = productNameInput.value;
+  let productsArray = [];
 
-  if (productInp.value === "") hideModal();
-  // Multiple products separated by ","
-  else if (productInp.value.includes(",")) {
-    let productArray = [];
-    productArray = productInp.value.split(",");
-    addMultipleProducts(productArray);
-    hideModal();
+  // Input filtering
+  if (productName.includes(",")) {
+    productsArray = [] = productName
+      .split(",")
+      .map((item) => item.trim())
+      .filter((item) => item);
+    console.log(productsArray);
+  } else if (productName.includes("-")) {
+    productsArray = [] = productName
+      .split("-")
+      .map((item) => item.trim())
+      .filter((item) => item);
+    console.log(productsArray);
+  } else if (productName.trim() != "") {
+    productsArray = [productName];
   }
-  // Multiple products separated by "-"
-  else if (productInp.value.includes("-")) {
-    let productArray = [];
-    productArray = productInp.value.split("-");
-    productArray.shift();
-    addMultipleProducts(productArray);
-    hideModal();
-  }
-  // Add single product
-  else {
-    addProduct(productValue);
-    productInp.focus();
-  }
+
+  loadProducts(productsArray);
+  saveToLocalStorage();
+
+  productsArray = [];
+  productNameInput.value = "";
+  modal.close();
 });
