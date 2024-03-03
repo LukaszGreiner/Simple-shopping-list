@@ -6,15 +6,17 @@ const openModalBtn = document.querySelector(".add-product-button");
 const submitModalBtn = document.querySelector(".modal__submit-button");
 
 let productsData = [];
+submitModalBtn.addEventListener("click", addProduct);
 
-// LOCAL STORAGE
-
-// Get the data from local storage
-if (localStorage.getItem("productsArray")) {
-  productsData = JSON.parse(localStorage.getItem("productsArray"));
-  loadProducts(productsData);
+// Load data from local storage
+function loadFromLocalStorage() {
+  if (localStorage.getItem("productsArray")) {
+    productsData = JSON.parse(localStorage.getItem("productsArray"));
+    loadProducts(productsData);
+  }
 }
 
+// Save data to local storage
 function saveToLocalStorage() {
   productsData = Array.from(
     shoppingList.querySelectorAll(".shopping-list__item")
@@ -25,38 +27,14 @@ function saveToLocalStorage() {
   localStorage.setItem("productsArray", JSON.stringify(productsData));
 }
 
-function loadProducts(productsArray) {
-  // Creating shopping-list__item
-  productsArray.forEach((item) => {
-    const productListItem = `
-      <li class="shopping-list__item">
-        <input type="checkbox" class="shopping-list__item__checkbox" />
-        <p class="shopping-list__item__name">${item}</p>
-        <button type="button" class="shopping-list__item__remove-button">X</button>
-      </li>
-    `;
-
-    // Inserting shopping-list__item in the DOM
-    shoppingList.insertAdjacentHTML("beforeend", productListItem);
-
-    // Hooking EventListener to remove buttons
-    shoppingList.lastElementChild
-      .querySelector(".shopping-list__item__remove-button")
-      .addEventListener("click", (event) => {
-        const item = event.target.parentElement;
-        item.remove();
-        saveToLocalStorage();
-      });
-  });
-}
-
-// MODAL
-openModalBtn.addEventListener("click", () => {
+// Open modal
+openModalBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   modal.showModal();
 });
 
-// ADDING PRODUCTS
-submitModalBtn.addEventListener("click", () => {
+// Add product
+function addProduct() {
   const productName = productNameInput.value;
   let productsArray = [];
 
@@ -80,7 +58,36 @@ submitModalBtn.addEventListener("click", () => {
   loadProducts(productsArray);
   saveToLocalStorage();
 
+  // Clear input and close modal
   productsArray = [];
   productNameInput.value = "";
   modal.close();
-});
+}
+
+// Load products
+function loadProducts(productsArray) {
+  // Create shopping list items
+  productsArray.forEach((item) => {
+    const productListItem = `
+      <li class="shopping-list__item">
+        <input type="checkbox" class="shopping-list__item__checkbox" />
+        <p class="shopping-list__item__name">${item}</p>
+        <button type="button" class="shopping-list__item__remove-button">X</button>
+      </li>
+    `;
+
+    // Insert product list item into DOM
+    shoppingList.insertAdjacentHTML("beforeend", productListItem);
+
+    // Hook event listener to remove button
+    shoppingList.lastElementChild
+      .querySelector(".shopping-list__item__remove-button")
+      .addEventListener("click", (event) => {
+        const item = event.target.parentElement;
+        item.remove();
+        saveToLocalStorage();
+      });
+  });
+}
+
+loadFromLocalStorage();
