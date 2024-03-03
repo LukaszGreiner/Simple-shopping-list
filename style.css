@@ -18,10 +18,21 @@ body {
   background-color: var(--dark-bg-color);
 }
 
+.header {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.header__title {
+  font-size: 1.5rem;
+  color: var(--white-color);
+}
+
 /* SHOPING LIST */
 .shopping-list {
   display: grid;
   justify-content: center;
+  padding: 0 10px;
 }
 
 .shopping-list__item {
@@ -101,7 +112,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
 
   width: 90%;
   max-width: 600px;
@@ -163,4 +174,25 @@ body {
 
 .add-product-button:hover {
   opacity: 0.9;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+
+  padding-bottom: 5px;
+  width: 100%;
+
+  text-align: center;
+}
+
+.footer a {
+  color: #383d43;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer a:hover {
+  color: #464b51;
 }
