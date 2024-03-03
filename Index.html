@@ -8,11 +8,21 @@
     <script type="module" src="script.js"></script>
   </head>
   <body>
-    <ul class="shopping-list"></ul>
-    <dialog class="modal">
-      <input class="modal__input" type="text" placeholder="np. woda" />
-      <button class="modal__submit-button">Potwierdź</button>
-    </dialog>
-    <button class="add-product-button" autofocus>Dodaj produkty</button>
+    <div class="wrapper">
+      <header class="header">
+        <h1 class="header__title">Lista zakupów</h1>
+      </header>
+      <main>
+        <ul class="shopping-list"></ul>
+        <dialog class="modal">
+          <input class="modal__input" type="text" placeholder="np. woda" />
+          <button class="modal__submit-button">Potwierdź</button>
+        </dialog>
+        <button class="add-product-button" autofocus>Dodaj produkty</button>
+      </main>
+      <footer class="footer">
+        <a href="https://github.com/LukaszGreiner" target="_blank">&copy; Łukasz Greiner</a>
+      </footer>
+    </div>
   </body>
 </html>
