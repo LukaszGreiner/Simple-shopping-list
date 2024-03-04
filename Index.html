@@ -4,24 +4,44 @@
     <title>Lista Zakupów</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Prosta lista zakupów, w szybki i skuteczny sposób stwórz listę zakupów i udostępnij ją na inne urządzenie!">
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="script.js"></script>
   </head>
   <body>
     <div class="wrapper">
       <header class="header">
-        <h1 class="header__title">Lista zakupów</h1>
+        <h1 class="header-title">Lista zakupów</h1>
+        <button class="header__share-button" type="button" title="Udostępnij">
+          <svg height="10" viewBox="0 0 8 8" width="15" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--white-color)" d="m5 0v2c-4 0-5 2.05-5 5 .52-1.98 2-3 4-3h1v2l3-3.16z"/>
+          </svg>
+        </button>
       </header>
-      <main>
+      <main> 
         <ul class="shopping-list"></ul>
         <dialog class="modal">
+          <div class="modal__info-container">
+              <svg class="modal__info-icon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"/></svg>
+              <p>Aby dodać kilka produktów na raz, oddziel je przecinkiem lub myślnikiem.</p>
+          </div>
+          <div class="modal__options-container">
+            <button id="modalShareBtn" class="modal__options-button" type="button" title="Udostępnij">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m720-120-56-56 63-64H560v-80h167l-63-64 56-56 160 160-160 160Zm-600 0v-600q0-33 23.5-56.5T200-800h480q33 0 56.5 23.5T760-720v203q-10-2-20-2.5t-20-.5q-10 0-20 .5t-20 2.5v-203H200v400h283q-2 10-2.5 20t-.5 20q0 10 .5 20t2.5 20H240L120-120Zm160-440h320v-80H280v80Zm0 160h200v-80H280v80Zm-80 80v-400 400Z"/></svg>
+            <button id="modalCopyBtn" class="modal__options-button" type="button" title="Skopiuj do schowka">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+            </button>
+            <button id="modalPasteBtn" class="modal__options-button" type="button" title="Wklej ze schowka">
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560h-80v120H280v-120h-80v560Zm280-560q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z"/></svg>
+            </button>
+          </div>    
           <input class="modal__input" type="text" placeholder="np. woda" />
-          <button class="modal__submit-button">Potwierdź</button>
+          <button id="modalSubmitBtn" class="modal__submit-button">Potwierdź</button>
         </dialog>
-        <button class="add-product-button" autofocus>Dodaj produkty</button>
+        <button id="openModalBtn" class="add-product-button">Dodaj produkty</button>
       </main>
       <footer class="footer">
-        <a href="https://github.com/LukaszGreiner" target="_blank">&copy; Łukasz Greiner</a>
+        <a title="Autor aplikacji" href="https://github.com/LukaszGreiner" target="_blank">&copy; Łukasz Greiner</a>
       </footer>
     </div>
   </body>
