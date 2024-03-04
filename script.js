@@ -86,13 +86,13 @@ optionsPasteBtn.addEventListener("click", async () => {
 });
 
 // Paste directly into input field
-productNameInput.addEventListener("paste", (event) => {
-  event.preventDefault();
-  const pastedData = event.clipboardData.getData("text/plain");
-  const modifiedData = pastedData.slice(19, -122);
+// productNameInput.addEventListener("paste", (e) => {
+//   e.preventDefault();
+//   const pastedData = event.clipboardData.getData("text/plain");
+//   const modifiedData = pastedData.slice(19, -122);
 
-  productNameInput.value = modifiedData;
-});
+//   productNameInput.value = modifiedData;
+// });
 
 // Open modal
 openModalBtn.addEventListener("click", (e) => {
@@ -102,17 +102,22 @@ openModalBtn.addEventListener("click", (e) => {
 
 // Add product
 function addProduct() {
-  const productName = productNameInput.value;
+  let productName = productNameInput.value;
   let productsArray = [];
+
+  // Filter sms, when paste EventListnerFails
+  productNameInput.value.includes("https://prostalistazakupow.netlify.app/")
+    ? (productName = productNameInput.value.slice(19, -122))
+    : null;
 
   // Input filtering
   if (productName.includes(",")) {
-    productsArray = [] = productName
+    productsArray = productName
       .split(",")
       .map((item) => item.trim())
       .filter((item) => item);
   } else if (productName.includes("-")) {
-    productsArray = [] = productName
+    productsArray = productName
       .split("-")
       .map((item) => item.trim())
       .filter((item) => item);
