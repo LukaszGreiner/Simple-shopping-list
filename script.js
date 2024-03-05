@@ -86,13 +86,13 @@ optionsPasteBtn.addEventListener("click", async () => {
 });
 
 // Paste directly into input field
-// productNameInput.addEventListener("paste", (e) => {
-//   e.preventDefault();
-//   const pastedData = event.clipboardData.getData("text/plain");
-//   const modifiedData = pastedData.slice(19, -122);
+productNameInput.addEventListener("paste", (e) => {
+  e.preventDefault();
+  const pastedData = event.clipboardData.getData("text/plain");
+  const modifiedData = pastedData.slice(19, -122);
 
-//   productNameInput.value = modifiedData;
-// });
+  productNameInput.value = modifiedData;
+});
 
 // Open modal
 openModalBtn.addEventListener("click", (e) => {
