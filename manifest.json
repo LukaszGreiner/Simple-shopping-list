@@ -1,0 +1,23 @@
+{
+  "name": "Prosta lista zakupów",
+  "short_name": "Lista zakupów",
+  "theme_color": "#0075ff",
+  "background_color": "#0075ff",
+  "start_url": "./",
+  "id": "demo-1",
+  "display": "standalone",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
