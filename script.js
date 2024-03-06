@@ -57,8 +57,6 @@ shareBtn.addEventListener("click", () => {
   if (navigator.share) {
     navigator.share({
       text: sms,
-      url: "https://prostalistazakupow.netlify.app/",
-      title: "Lista zakupów",
     });
   } else {
     navigator.clipboard.writeText(sms);
