@@ -23,7 +23,17 @@
         </button>
       </header>
       <main> 
-        <ul class="shopping-list"></ul>
+        <ul class="shopping-list">
+
+          <template id="item-template">
+            <li class="shopping-list__item">
+              <input type="checkbox" class="shopping-list__item__checkbox" />
+              <p class="shopping-list__item__name">Placeholder</p>
+              <button type="button" class="shopping-list__item__remove-button">X</button>
+            </li>
+          </template>
+
+        </ul>
         <dialog class="modal">
           <div class="modal__info-container">
               <svg class="modal__info-icon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"/></svg>
@@ -39,10 +49,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560h-80v120H280v-120h-80v560Zm280-560q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z"/></svg>
             </button>
           </div>    
-          <input class="modal__input" type="text" placeholder="np. woda" />
+          <input id="Label" class="modal__input" type="text" placeholder="np. woda" />
           <button id="modalSubmitBtn" class="modal__submit-button">Potwierdź</button>
         </dialog>
-        <button id="openModalBtn" class="add-product-button">Dodaj produkty</button>
+        <button id="openModalBtn" class="add-product-button" autofocus>Dodaj produkty</button>
       </main>
       <footer class="footer">
         <a title="Autor aplikacji" href="https://github.com/LukaszGreiner" target="_blank">&copy; Łukasz Greiner</a>
