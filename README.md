@@ -9,6 +9,10 @@ Planuj zakupy w prosty i szybki sposób. Odchaczaj zakupione produkty, udostępn
 <br/>
 <a href="https://prostalistazakupow.netlify.app/">www.prostalistazakupow.netlify.app</a>
 <br/>
+<br/>
+
+![prosta-lista-zakupow_320](https://github.com/user-attachments/assets/ca3e74a5-a822-4863-83b1-6aee2ccffb55)
+
 
 ## Screenshots
 
@@ -23,3 +27,6 @@ Planuj zakupy w prosty i szybki sposób. Odchaczaj zakupione produkty, udostępn
 <img src="https://github.com/user-attachments/assets/45e4800a-9101-43dc-858d-38e4d68d5fcf" alt="Ekran główny listy zakupów" height="400px"/>
     <p>Odchaczaj produkty które są już w koszyka</p>
     <br/>
+
+
+
