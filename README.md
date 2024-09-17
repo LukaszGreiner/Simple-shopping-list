@@ -11,8 +11,7 @@ Planuj zakupy w prosty i szybki sposób. Odchaczaj zakupione produkty, udostępn
 <br/>
 <br/>
 
-![prosta-lista-zakupow_320](https://github.com/user-attachments/assets/ca3e74a5-a822-4863-83b1-6aee2ccffb55)
-
+![quizoptakach](https://github.com/user-attachments/assets/7bf2e5dc-9787-464d-acd5-e4fccb56e8c7)
 
 ## Screenshots
 
