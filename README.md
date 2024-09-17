@@ -11,7 +11,7 @@ Planuj zakupy w prosty i szybki sposób. Odchaczaj zakupione produkty, udostępn
 <br/>
 <br/>
 
-![quizoptakach](https://github.com/user-attachments/assets/7bf2e5dc-9787-464d-acd5-e4fccb56e8c7)
+<img src="https://github.com/user-attachments/assets/a53b422d-a815-4150-b082-f0d7bf2ae57d" alt="Prosta lista zakupów gif" height="800px"/>
 
 ## Screenshots
 
