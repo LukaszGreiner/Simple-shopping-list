@@ -1,4 +1,4 @@
-# Simple-shopping-list
+# Prosta lista zakupów
 
 Planuj zakupy w prosty i szybki sposób. Odchaczaj zakupione produkty, udostępnij listę drugiej osobie.
 <br/>
